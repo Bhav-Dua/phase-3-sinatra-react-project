@@ -9,9 +9,9 @@ class ApplicationController < Sinatra::Base
 
   post '/teams' do
     team = Team.create(team_name: params[:team_name],
-      team_logo: params[team_logo],
-      wins: params[wins],
-      losses: params[losses]
+      team_logo: params[:team_logo],
+      wins: params[:wins],
+      losses: params[:losses]
     )
     team.to_json
   end
