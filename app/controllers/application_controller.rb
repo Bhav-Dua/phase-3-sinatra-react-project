@@ -4,7 +4,7 @@ class ApplicationController < Sinatra::Base
   # Add your routes here
   get '/teams' do
     teams = Team.all
-    teams.to_json
+    teams.to_json(include: :players)
   end
 
   post '/teams' do
@@ -16,24 +16,8 @@ class ApplicationController < Sinatra::Base
     team.to_json
   end
 
-  patch '/teams/:id' do
-    team = Team.find(params[:id])
-    team.update(wins: params[:wins], losses: params[:losses])
-    team.to_json
-  end
-
   get '/players' do
     players = Player.all
-    players.to_json
-  end
-
-  get '/players/:id' do
-    player = Player.find(params[:id])
-    player.to_json
-  end
-
-  get '/players/by_team/:id' do
-    players = Team.find(params[:id]).players
     players.to_json
   end
 
